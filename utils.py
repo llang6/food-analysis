@@ -221,11 +221,11 @@ def main_taste_embedding(food_names, df_Custom, options):
     elif ('t-SNE' in options['taste']['method']):
 
         # distance calculations
-        if options['chem']['distance_metric'] == 'cosine':
+        if options['taste']['distance_metric'] == 'cosine':
             dist = lambda x, y: dist_cosine(x, y)
-        elif options['chem']['distance_metric'] == 'angle':
+        elif options['taste']['distance_metric'] == 'angle':
             dist = lambda x, y: dist_angle(x, y)
-        elif options['chem']['distance_metric'] == 'euclidean':
+        elif options['taste']['distance_metric'] == 'euclidean':
             dist = lambda x, y: dist_euclidean(x, y)
 
         pdist = np.zeros([X_food.shape[0], X_food.shape[0]])

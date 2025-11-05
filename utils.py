@@ -12,12 +12,12 @@ from mol2vec.features import mol2alt_sentence, MolSentence, DfVec
 ## functions for analysis
 
 def load_data():
-    path = 'src/customDatabase.xlsx'
+    path = 'food-analysis/customDatabase.xlsx'
     df = pd.read_excel(path)
-    with open('src/chemvecs_mol2vec.pkl', 'rb') as file:
+    with open('food-analysis/chemvecs_mol2vec.pkl', 'rb') as file:
         chemvecs_mol2vec = pickle.load(file)
         file.close()
-    with open('src/chemvecs_morgan.pkl', 'rb') as file:
+    with open('food-analysis/chemvecs_morgan.pkl', 'rb') as file:
         chemvecs_morgan = pickle.load(file)
         file.close()
     return df, chemvecs_mol2vec, chemvecs_morgan
@@ -649,5 +649,6 @@ def data_to_embedding2(df_, model):
 
     # extract embeddings to a numpy array
     X = np.array([(x if x is not None else np.zeros(2048)) for x in df['fp']])
+
 
     return (X, df)

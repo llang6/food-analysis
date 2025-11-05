@@ -1,10 +1,23 @@
+.dropdown_container {
+    background-color: lightgray;
+    width: 50%; 
+    font-family: Sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly;
+    margin: 10px;
+    padding: 10px;
+}
+
+h1, h2, h3 {
+    font-family: Sans-serif;
+}
+
 .row {
     display: flex;
     justify-content: center;
 }
 
-/* .graph {
-    width: 600px;
-    aspect-ratio: 1 / 1;
-    padding: 0%;
-} */
+.navbar {
+    font-family: Sans-serif;
+}

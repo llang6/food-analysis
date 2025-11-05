@@ -35,3 +35,4 @@ Werkzeug
 zipp
 gunicorn
 rdkit
+mol2vec

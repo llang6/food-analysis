@@ -140,19 +140,19 @@ $$
     
 - There are different options for calculating the weights (`no_chemosensory_policy`, which can be either 'zero' or 'remove') but they are essentially relative amounts of the compounds in the food
     
-    - `no_chemosensory_policy` set to:
+- - `no_chemosensory_policy` set to:
       
-        - 'zero':
+- - - 'zero':
         
-            - Amounts of compounds without documented chemosensory properties do not count in weight numerators but do count in the denominator
+- - - - Amounts of compounds without documented chemosensory properties do not count in weight numerators but do count in the denominator
             
 $$
 w_j = \frac{a_j \delta_j^\mathrm{chemo}}{a_1 + \cdot\cdot\cdot + a_{N_i}}
 $$
           
-        - 'remove':
+- - - 'remove':
         
-            - Amounts of compounds without documented chemosensory properties do not count in either weight numerators or the denominator
+- - - - Amounts of compounds without documented chemosensory properties do not count in either weight numerators or the denominator
             
 $$
 w_j = \frac{a_j \delta_j^\mathrm{chemo}}{a_1 \delta_1^\mathrm{chemo} + \cdot\cdot\cdot + a_{N_i} \delta_{N_i}^\mathrm{chemo}}

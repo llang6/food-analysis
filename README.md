@@ -35,9 +35,7 @@ $$
     - A set of compounds
     
 $
-\[
 \mathbf{f}_i^\mathrm{C} = \{ \mathrm{name}_1, ..., \mathrm{name}_j, ..., \mathrm{name}_{N_i} \}
-\]
 $
 
     - Otherwise, each food will be:

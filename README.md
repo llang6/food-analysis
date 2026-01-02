@@ -36,7 +36,7 @@ $$
     
 $$\mathbf{f}_i^\mathrm{C} = \{ \mathrm{name}_1, ..., \mathrm{name}_j, ..., \mathrm{name}_{N_i} \}$$
 
-- - Otherwise, each food will be:
+ - Otherwise, each food will be:
     
 - - - A weighted sum of its compound vectors, each of which is either a 300-dimensional _mol2vec_ embedding or a 2048-dimensional _morgan_ embedding (choose with the `vector_type` variable)
         

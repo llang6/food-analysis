@@ -32,11 +32,11 @@ $$
 
 - If you choose to visualize the foods in a distance space using either the Hamming or Jaccard metrics, each food will be:
 
-    - A set of compounds
+- - A set of compounds
     
 $$\mathbf{f}_i^\mathrm{C} = \{ \mathrm{name}_1, ..., \mathrm{name}_j, ..., \mathrm{name}_{N_i} \}$$
 
- - Otherwise, each food will be:
+- - Otherwise, each food will be:
     
 - - - A weighted sum of its compound vectors, each of which is either a 300-dimensional _mol2vec_ embedding or a 2048-dimensional _morgan_ embedding (choose with the `vector_type` variable)
         
@@ -46,75 +46,75 @@ $$
 \mathbf{f}_i^\mathrm{C} = \sum_{j=1}^{N_i} w_j \ \mathrm{cvec}_j
 $$
         
-        - There are different options for calculating the weights (`no_structure_policy` and `no_chemosensory_policy`, each of which can be either 'include', 'zero', or 'remove') but they are essentially relative amounts of the compounds in the food
+- - There are different options for calculating the weights (`no_structure_policy` and `no_chemosensory_policy`, each of which can be either 'include', 'zero', or 'remove') but they are essentially relative amounts of the compounds in the food
         
-        - `no_structure_policy` set to:
+- - - `no_structure_policy` set to:
         
-            - 'zero':
+- - - - 'zero':
             
-                - Amounts of compounds without documented structures do not count in weight numerators, but do count in the weight denominator
+- - - - - Amounts of compounds without documented structures do not count in weight numerators, but do count in the weight denominator
                 
 $$
 w_j = \frac{a_j \delta_j^\mathrm{struct}}{a_1 + \cdot \cdot \cdot + a_{N_i}}
 $$
                 
-            - 'remove':
+- - - - 'remove':
             
-                - Amounts of compounds without documented structures do not count in either weight numerators or the denominator
+- - - - - Amounts of compounds without documented structures do not count in either weight numerators or the denominator
                 
 $$
 w_j = \frac{a_j \delta_j^\mathrm{struct}}{a_1 \delta_1^\mathrm{struct} + \cdot\cdot\cdot + a_{N_i} \delta_{N_i}^\mathrm{struct}}
 $$
                 
-        - `no_chemosensory_policy` set to:
+- - - `no_chemosensory_policy` set to:
         
-            - 'include':
+- - - - 'include':
             
-                - Amounts of compounds without documented chemosensory properties count in weight numerators and the denominator
+- - - - - Amounts of compounds without documented chemosensory properties count in weight numerators and the denominator
                 
 $$
 w_j = \frac{a_j}{a_1 + \cdot\cdot\cdot + a_{N_i}}
 $$
                 
-            - 'zero':
+- - - - 'zero':
             
-                - Amounts of compounds without documented chemosensory properties do not count in weight numerators but do count in the denominator
+- - - - - Amounts of compounds without documented chemosensory properties do not count in weight numerators but do count in the denominator
                 
 $$
 w_j = \frac{a_j \delta_j^\mathrm{chemo}}{a_1 + \cdot\cdot\cdot + a_{N_i}}
 $$
                 
-            - 'remove':
+- - - - 'remove':
             
-                - Amounts of compounds without documented chemosensory properties do not count in either weight numerators or the denominator
+- - - - - Amounts of compounds without documented chemosensory properties do not count in either weight numerators or the denominator
                 
 $$
 w_j = \frac{a_j \delta_j^\mathrm{chemo}}{a_1 \delta_1^\mathrm{chemo} + \cdot\cdot\cdot + a_{N_i} \delta_{N_i}^\mathrm{chemo}}
 $$
                 
-    - All foods under consideration are assembled into a data matrix
+- All foods under consideration are assembled into a data matrix
     
 $$
 \mathbf{X}^\mathrm{C} = [ \mathbf{f}_1^\mathrm{C}, ..., \mathbf{f}_i^\mathrm{C}, ..., \mathbf{f}_N^\mathrm{C} ] ^ \mathrm{T}
 $$
     
-    - There is an option to z-score this matrix (each feature/column) before doing the pairwise distance or PCA calculations
+- There is an option to z-score this matrix (each feature/column) before doing the pairwise distance or PCA calculations
     
-    - Pairwise distance calculations (if you use t-SNE) yield a pairwise distance matrix
+- Pairwise distance calculations (if you use t-SNE) yield a pairwise distance matrix
 
 $$
 \mathbf{D}^\mathrm{C} = [ d(\mathbf{f}_m^\mathrm{C}, \mathbf{f}_n^\mathrm{C}) ] = [ d(\mathbf{X}^\mathrm{C}[m, :], \mathbf{X}^\mathrm{C}[n, :]) ]
 $$
 
-    and 2- or 3-dimensional embeddings for each food $\tilde{\mathbf{f}}_i^\mathrm{C}$ are constructed such that their distance structure approximates $\mathbf{D}^\mathrm{C}$
+and 2- or 3-dimensional embeddings for each food $\tilde{\mathbf{f}}_i^\mathrm{C}$ are constructed such that their distance structure approximates $\mathbf{D}^\mathrm{C}$
 
-    - Covariance calculations (if you use PCA) yield a covariance matrix
+- Covariance calculations (if you use PCA) yield a covariance matrix
     
 $$
 \mathbf{C}^\mathrm{C} = [ \mathrm{cov}(\mathbf{X}^\mathrm{C}[:, m], \mathbf{X}^\mathrm{C}[:, n]) ]
 $$
 
-    and 2- or 3-dimensional embeddings for each food $\tilde{\mathbf{f}}_i^\mathrm{C}$ are constructed by projecting onto the principal components of the covariance matrix
+and 2- or 3-dimensional embeddings for each food $\tilde{\mathbf{f}}_i^\mathrm{C}$ are constructed by projecting onto the principal components of the covariance matrix
 
 **Visualization in taste space**
 
